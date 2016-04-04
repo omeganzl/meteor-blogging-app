@@ -1,0 +1,32 @@
+
+<head>
+	<title>Meteor Blogging Application</title>
+</head>
+<body>
+	<div class="container">
+		<header>
+			<h1>Meteor Blogging Application</h1>
+
+			<h3>Create a new post</h3>
+			<form action="" class="new-post">
+				<input type="text" name="title" placeholder="Enter Title" />
+				<input type="text" name="body" placeholder="Enter Body" />
+				<button type="submit">Create</button>
+			</form>
+		</header>
+
+		<ul>
+			{{#each posts}}
+				{{> post}}
+			{{/each}}
+		</ul>
+	</div>
+</body>
+
+<template id="post">
+	<li>
+		<h3>{{title}}</h3>
+		<h5>{{date}}</h5>
+		<p class="body">{{body}}</p>
+	</li>
+</template>
