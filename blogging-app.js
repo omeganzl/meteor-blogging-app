@@ -50,10 +50,10 @@ if (Meteor.isClient) {
 		},
 		'submit .edit-post': function(e) {
 			console.log('editing');
-			e.preventDefault()
+			e.preventDefault();
 
-			var title = e.target.title.value = '';
-			var body = e.target.body.value = '';
+			var title = e.target.title.value;
+			var body = e.target.body.value;
 
 			var updatedPost = {
 				title: title,
@@ -79,12 +79,12 @@ Meteor.methods({
 			title: newPost.title,
 			body: newPost.body,
 			date: new Date(),
-			owner: Meteor.userID(),
+			owner: Meteor.userId(),
 			username: Meteor.user().username
 		});
 	},
-	editPost: function(updatedPost, postID) {
-		var post = Posts.findOne(postID);
+	editPost: function(updatedPost, postId) {
+		var post = Posts.findOne(postId);
 		if (post.username !== Meteor.user().username){
 			alert('You do not have permission to edit that post');
 			throw new Meteor.Error('not-authorized');
@@ -92,11 +92,11 @@ Meteor.methods({
 		Posts.update(postID, {$set: updatedPost});
 	},
 	deletePost: function (postId) {
-		var post = Posts.findOne(postID);
+		var post = Posts.findOne(postId);
 		if (post.username !== Meteor.user().username) {
 			alert('You do not have permission to edit that post');
 			throw new Meteor.Error('not-authorized');
 		}
-		Posts.remove(postID0;)
+		Posts.remove(postId);
 	},
 });
